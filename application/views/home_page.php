@@ -16,7 +16,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         echoStyles();
         echoScripts();
         ?>
-
+        <style>
+            * {
+                font-family: "Roboto";
+            }
+        </style>
     </head>
     <body>
         <!--[if lt IE 8]>

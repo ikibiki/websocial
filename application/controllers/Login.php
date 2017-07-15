@@ -2,7 +2,7 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Welcome extends CI_Controller {
+class Login extends CI_Controller {
 
     function __construct() {
         parent::__construct();
@@ -12,7 +12,7 @@ class Welcome extends CI_Controller {
 
     public function index() {
 
-        $this->load->view('websocial_view');
+        $this->load->view('login_view');
     }
 
     public function facebook() {
