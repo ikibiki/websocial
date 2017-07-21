@@ -37,12 +37,51 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <div class="col-md-9">
 
                     <div class="well well-lg">
+                        <form method="post">
+                            <textarea onkeyup="countChar(this)" maxlength="140" class="form-control" placeholder="What is on your mind?" rows="3" required></textarea>
+                            <span class="help-block">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox"><i class="fa fa-facebook-official fa-fw fa-lg"></i>
+                                    </label>&nbsp;
+                                    <label>
+                                        <input type="checkbox"><i class="fa fa-twitter-square fa-fw fa-lg"></i>
+                                    </label>&nbsp;
+                                    <label>
+                                        <input type="checkbox"><i class="fa fa-google-plus fa-fw fa-lg"></i>
+                                    </label>&nbsp;
+                                    <label>
+                                        <input type="checkbox"><i class="fa fa-instagram fa-fw fa-lg"></i>
+                                    </label>&nbsp;
+                                    <label>
+                                        <input type="checkbox"><i class="fa fa-foursquare fa-fw fa-lg"></i>
+                                    </label>&nbsp;
+                                    <label>
+                                        <input type="checkbox"><i class="fa fa-linkedin-square fa-fw fa-lg"></i>
+                                    </label>
+                                    <span id="hlp" class="help-block pull-right">140</span>
+                                </div>
 
+                            </span>
+                            <button type="submit" class="btn btn-default">Post</button>
+                        </form>
                     </div>
 
                 </div>
             </div>
         </div>
+
+        <script>
+            function countChar(val) {
+                var len = val.value.length;
+                if (len >= 140) {
+                    val.value = val.value.substring(0, 140);
+                } else {
+                    $('#hlp').text(140 - len);
+                }
+            }
+
+        </script>
 
     </body>
 </html>
