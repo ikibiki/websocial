@@ -11,6 +11,8 @@ function echoStyles() {
         "//cdnjs.cloudflare.com/ajax/libs/Ripple.js/1.2.1/ripple.min.css",
         "//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/css/jasny-bootstrap.min.css",
         "//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css",
+        "//cdnjs.cloudflare.com/ajax/libs/bootstrap-social/5.1.1/bootstrap-social.min.css",
+        "//cdnjs.cloudflare.com/ajax/libs/pretty-checkbox/2.2.1/pretty.min.css",
     );
     foreach ($css as $elem) {
         echo "<link rel='stylesheet' href='$elem'/>";

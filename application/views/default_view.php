@@ -17,6 +17,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         echoScripts();
         ?>
 
+        <style>
+            @import url('https://fonts.googleapis.com/css?family=Roboto');
+            body{
+                background-color: #EDF6FF;
+            }
+            * {
+                font-family: "Roboto";
+            }
+        </style>
     </head>
     <body>
         <!--[if lt IE 8]>
@@ -24,46 +33,57 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <![endif]-->
 
         <div class="container-fluid">
-            <p></p>
+            <p>&nbsp;</p>
+            <?php
+            if ($msg) {
+                ?>
+                <div class="alert alert-<?php echo $msg['type']; ?>">
+                    <span class="pficon pficon-<?php echo $msg['type']; ?>"></span>
+                    <strong><?php echo $msg['title']; ?></strong> <?php echo $msg['text']; ?>
+                </div>
+                <?php
+            }
+            ?>
             <div class="row">
                 <div class="col-md-3">
                     <ul class="nav nav-pills nav-stacked">
                         <li role="presentation" class="active"><a href="#">Home</a></li>
                         <li role="presentation"><a href="#">Profile</a></li>
                         <li role="presentation"><a href="#">Messages</a></li>
-                        <li role="presentation"><a href="#">Log out</a></li>
+                        <li role="presentation"><a href="<?php echo site_url('app/logout'); ?>">Log out</a></li>
                     </ul>
                 </div>
                 <div class="col-md-9">
-
+                    <h3>Hi, <?php echo $user->UserName; ?>!</h3>
                     <div class="well well-lg">
                         <form method="post">
                             <textarea onkeyup="countChar(this)" maxlength="140" class="form-control" placeholder="What is on your mind?" rows="3" required></textarea>
                             <span class="help-block">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox"><i class="fa fa-facebook-official fa-fw fa-lg"></i>
-                                    </label>&nbsp;
-                                    <label>
-                                        <input type="checkbox"><i class="fa fa-twitter-square fa-fw fa-lg"></i>
-                                    </label>&nbsp;
-                                    <label>
-                                        <input type="checkbox"><i class="fa fa-google-plus fa-fw fa-lg"></i>
-                                    </label>&nbsp;
-                                    <label>
-                                        <input type="checkbox"><i class="fa fa-instagram fa-fw fa-lg"></i>
-                                    </label>&nbsp;
-                                    <label>
-                                        <input type="checkbox"><i class="fa fa-foursquare fa-fw fa-lg"></i>
-                                    </label>&nbsp;
-                                    <label>
-                                        <input type="checkbox"><i class="fa fa-linkedin-square fa-fw fa-lg"></i>
-                                    </label>
-                                    <span id="hlp" class="help-block pull-right">140</span>
+                                <div class="pretty plain toggle">
+                                    <input type="checkbox"/> 
+                                    <label class="text-danger"><i class="fa fa-facebook-official"></i> Facebook</label>
+                                    <label class="text-info"><i class="fa fa-facebook-official"></i> <strong>Facebook</strong></label>
+                                </div>
+                                <div class="pretty plain toggle">
+                                    <input type="checkbox"/> 
+                                    <label class="text-danger"><i class="fa fa-twitter-square"></i> Twitter</label>
+                                    <label class="text-info"><i class="fa fa-twitter-square"></i> <strong>Twitter</strong></label>
+                                </div>
+                                <div class="pretty plain toggle">
+                                    <input type="checkbox"/> 
+                                    <label class="text-danger"><i class="fa fa-google-plus"></i> Google Plus</label>
+                                    <label class="text-info"><i class="fa fa-google-plus"></i> <strong>Google Plus</strong></label>
+                                </div>
+                                <div class="pretty plain toggle">
+                                    <input type="checkbox"/> 
+                                    <label class="text-danger"><i class="fa fa-linkedin-square"></i> Linked In</label>
+                                    <label class="text-info"><i class="fa fa-linkedin-square"></i> <strong>Linked In</strong></label>
                                 </div>
 
                             </span>
+
                             <button type="submit" class="btn btn-default">Post</button>
+
                         </form>
                     </div>
 

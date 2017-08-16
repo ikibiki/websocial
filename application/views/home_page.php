@@ -16,7 +16,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         echoStyles();
         echoScripts();
         ?>
-
     </head>
     <body>
         <!--[if lt IE 8]>
