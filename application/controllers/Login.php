@@ -12,6 +12,7 @@ class Login extends CI_Controller {
     public function index() {
         $data["msg"] = $this->session->flashdata('msg');
         $data['fbloginurl'] = $this->facebookci->getLoginLink();
+        $data['twitterloginurl'] = site_url('social/twitter/1');
         $this->load->view('login_view', $data);
     }
 

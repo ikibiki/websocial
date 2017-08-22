@@ -6,11 +6,15 @@ class App extends CI_Controller {
 
     function __construct() {
         parent::__construct();
+        $this->load->model('UserAccount');
+        $this->load->model('SocialAccount');
+    }
+
+    public function test() {
+        $this->twitterci->getTwitterProfile('22249359-QDVs54Z5QefknNnugTkdsg5WWUY3VICjKBwFrvdyP', '0X1o9VfEY9bUUcz6ioyVnri4aBkDHfZpBOr6e4ipBVIcR');
     }
 
     public function index() {
-        var_dump($this->session);
-        $data['fbloginurl'] = $this->facebookci->getLoginLink();
         if ($this->isSessionActive()) {
             $data["user"] = $this->isSessionActive();
             $data["msg"] = $this->session->flashdata('msg');
@@ -20,11 +24,42 @@ class App extends CI_Controller {
         }
     }
 
-    public function logout(){
+    public function process() {
+
+        $redir = 'app';
+        $user = $this->isSessionActive();
+
+        if ($user) {
+
+            $msg = $this->input->post('msg');
+
+            $fb = $this->input->post('FB');
+            $tw = $this->input->post('TW');
+
+
+
+            if ($fb) {
+                $accesstoken = $this->SocialAccount->getSocialAccountByUser('FB', $user->ID)->AccessToken;
+
+                $this->facebookci->createPost($msg, $accesstoken);
+            }
+
+            if ($tw) {
+                $twat = $this->SocialAccount->getSocialAccountByUser('TW', $user->ID);
+                $accesstoken = $twat->SocialID;
+                $accesstokensecret = $twat->AccessToken;
+
+                $this->twitterci->tweet($msg, $accesstoken, $accesstokensecret);
+            }
+        }
+        redirect($redir);
+    }
+
+    public function logout() {
         $this->session->sess_destroy();
         redirect(base_url());
     }
-    
+
     protected function isSessionActive() {
         return $this->session->user;
     }

@@ -2,6 +2,14 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/xampp/htdocs/websocial/application/controllers/Register.php</file>
+            <file>file:/C:/xampp/htdocs/websocial/application/views/login_view.php</file>
+            <file>file:/C:/xampp/htdocs/websocial/application/controllers/Login.php</file>
+            <file>file:/C:/xampp/htdocs/websocial/application/controllers/Social.php</file>
+            <file>file:/C:/xampp/htdocs/websocial/application/libraries/FacebookCI.php</file>
+            <file>file:/C:/xampp/htdocs/websocial/application/controllers/App.php</file>
+            <file>file:/C:/xampp/htdocs/websocial/application/views/default_view.php</file>
+        </group>
     </open-files>
 </project-private>

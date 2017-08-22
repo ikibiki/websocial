@@ -140,7 +140,7 @@ $redir = '';
                             <a class="btn btn-block btn-social btn-tumblr">
                                 <span class="fa fa-tumblr"></span> Sign in with Tumblr
                             </a>
-                            <a class="btn btn-block btn-social btn-twitter">
+                            <a class="btn btn-block btn-social btn-twitter" href="<?php echo $twitterloginurl; ?>">
                                 <span class="fa fa-twitter"></span> Sign in with Twitter
                             </a>
                             <a class="btn btn-block btn-social btn-vimeo">

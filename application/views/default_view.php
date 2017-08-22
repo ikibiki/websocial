@@ -56,35 +56,39 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <div class="col-md-9">
                     <h3>Hi, <?php echo $user->UserName; ?>!</h3>
                     <div class="well well-lg">
-                        <form method="post">
-                            <textarea onkeyup="countChar(this)" maxlength="140" class="form-control" placeholder="What is on your mind?" rows="3" required></textarea>
-                            <span class="help-block">
-                                <div class="pretty plain toggle">
-                                    <input type="checkbox"/> 
-                                    <label class="text-danger"><i class="fa fa-facebook-official"></i> Facebook</label>
-                                    <label class="text-info"><i class="fa fa-facebook-official"></i> <strong>Facebook</strong></label>
-                                </div>
-                                <div class="pretty plain toggle">
-                                    <input type="checkbox"/> 
-                                    <label class="text-danger"><i class="fa fa-twitter-square"></i> Twitter</label>
-                                    <label class="text-info"><i class="fa fa-twitter-square"></i> <strong>Twitter</strong></label>
-                                </div>
-                                <div class="pretty plain toggle">
-                                    <input type="checkbox"/> 
-                                    <label class="text-danger"><i class="fa fa-google-plus"></i> Google Plus</label>
-                                    <label class="text-info"><i class="fa fa-google-plus"></i> <strong>Google Plus</strong></label>
-                                </div>
-                                <div class="pretty plain toggle">
-                                    <input type="checkbox"/> 
-                                    <label class="text-danger"><i class="fa fa-linkedin-square"></i> Linked In</label>
-                                    <label class="text-info"><i class="fa fa-linkedin-square"></i> <strong>Linked In</strong></label>
-                                </div>
+                        <?php
+                        echo form_open('app/process');
+                        ?>
+                        <textarea name="msg" onkeyup="countChar(this)" maxlength="140" class="form-control" placeholder="What is on your mind?" rows="3" required></textarea>
+                        <span class="help-block">
+                            <div class="pretty plain toggle">
+                                <input name="FB" type="checkbox"/> 
+                                <label class="text-danger"><i class="fa fa-facebook-official"></i> Facebook</label>
+                                <label class="text-info"><i class="fa fa-facebook-official"></i> <strong>Facebook</strong></label>
+                            </div>
+                            <div class="pretty plain toggle">
+                                <input name="TW" type="checkbox"/> 
+                                <label class="text-danger"><i class="fa fa-twitter-square"></i> Twitter</label>
+                                <label class="text-info"><i class="fa fa-twitter-square"></i> <strong>Twitter</strong></label>
+                            </div>
+                            <div class="pretty plain toggle">
+                                <input name="GP" type="checkbox"/> 
+                                <label class="text-danger"><i class="fa fa-google-plus"></i> Google Plus</label>
+                                <label class="text-info"><i class="fa fa-google-plus"></i> <strong>Google Plus</strong></label>
+                            </div>
+                            <div class="pretty plain toggle">
+                                <input name="LIN"  type="checkbox"/> 
+                                <label class="text-danger"><i class="fa fa-linkedin-square"></i> Linked In</label>
+                                <label class="text-info"><i class="fa fa-linkedin-square"></i> <strong>Linked In</strong></label>
+                            </div>
 
-                            </span>
+                        </span>
 
-                            <button type="submit" class="btn btn-default">Post</button>
+                        <button type="submit" class="btn btn-default">Post</button>
 
-                        </form>
+                        <?php
+                        echo form_close();
+                        ?>
                     </div>
 
                 </div>

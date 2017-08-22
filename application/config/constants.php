@@ -88,3 +88,9 @@ defined('EXIT__AUTO_MAX') OR define('EXIT__AUTO_MAX', 125); // highest automatic
 define('WEBSITE_TITLE', 'Social Combo');
 define('FACEBOOK_APP', '147803949109037');
 define('FACEBOOK_SECRET', '7991382e239b602628a44899b08f0f1b');
+define('TWITTER_APP', 'IqUUATM8vNXdjGZwLS2PN2sxc');
+define('TWITTER_SECRET', 'GjuHFflRAy5gSmTNr2XI2r33zloqelrMiUiUOV8YwjeQ2ZJFaH');
+define('GOOGLEPLUS_APP', '703056177410-m648n9c4635i12r10nlgoepqqvsvia1s.apps.googleusercontent.com');
+define('GOOGLEPLUS_SECRET', 'Wnp6PpCDU7pgsWW9jBFJZhuG');
+define('LINKEDIN_APP', '81ce9zq8f81bbm');
+define('LINKEDIN_SECRET', 'C3U8ug8WrIBJw8xn');
