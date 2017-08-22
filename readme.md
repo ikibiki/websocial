@@ -20,3 +20,12 @@ Social Combo is a simpler and easier way to monitor how well each post goes on m
 ### Models (Handles CRUD operations)
 - Social Account model - Social Accounts base model
 - UserAccount - User base model
+
+### Views
+- default_view - The primary front end of the application
+- comingsoon_view - Static coming soon page
+- home_page - Future static welcome page
+- login_view - Login front end ui
+- register_view - Registration front end ui
+- template_only - As the name implies template only file
+- welcome_message - Codeigniter's default view (i'm keeping this one)
