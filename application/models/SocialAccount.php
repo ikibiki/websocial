@@ -90,12 +90,12 @@ class SocialAccount extends CI_Model {
         }
     }
 
-    public function updateAccessToken($userid, $socialcode,$socialid, $accesstoken) {
+    public function updateAccessToken($userid, $socialcode, $socialid, $accesstoken) {
         $this->dbi->reset_query();
 
         $this->dbi->where(array(
             'User_Ref' => $userid,
-            'SocialID'=>$socialid,
+            'SocialID' => $socialid,
             'SocialCode' => $socialcode,
         ));
         $exist = $this->dbi->get("tblsocialaccount")->result();
@@ -107,6 +107,7 @@ class SocialAccount extends CI_Model {
             $this->dbi->reset_query();
             $this->dbi->where(array(
                 'User_Ref' => $userid,
+                'SocialID' => $socialid,
                 'SocialCode' => $socialcode,
             ));
             $this->dbi->update('tblsocialaccount', $data);
@@ -114,6 +115,7 @@ class SocialAccount extends CI_Model {
         } else {
 
             $data['User_Ref'] = $userid;
+            $data['SocialID'] = $socialid;
             $data['SocialCode'] = $socialcode;
             $this->dbi->reset_query();
             $this->dbi->insert('tblsocialaccount', $data);

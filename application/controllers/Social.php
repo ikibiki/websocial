@@ -24,10 +24,11 @@ class Social extends CI_Controller {
             $accesstoken = $this->session->userdata('fb_access_token');
 
             if ($this->isSessionActive()) {
+                $user = $this->isSessionActive();
                 $profile = $this->facebookci->getFacebookProfile($accesstoken);
                 $this->SocialAccount->updateAccessToken($user->ID, 'FB', $profile['id'], $accesstoken);
 
-                $this->setMessage("Connect", "Twitter connected!", "success");
+                $this->setMessage("Connect", "Facebook connected!", "success");
                 redirect('app/connect');
             } else {
 
@@ -57,6 +58,7 @@ class Social extends CI_Controller {
         $accesstokensecret = $this->session->userdata('oauth_token_secret');
 
         if ($this->isSessionActive()) {
+            $user = $this->isSessionActive();
             $profile = $this->twitterci->getTwitterProfile($accesstoken, $accesstokensecret);
             $this->SocialAccount->updateAccessToken($user->ID, 'TW', $profile->screen_name, $accesstoken . ',' . $accesstokensecret);
 
@@ -87,6 +89,7 @@ class Social extends CI_Controller {
         $accesstoken = $this->session->userdata('linkedin_access_token');
 
         if ($this->isSessionActive()) {
+            $user = $this->isSessionActive();
             $profile = $this->linkedinci->getLinkedinProfile($accesstoken);
             $this->SocialAccount->updateAccessToken($user->ID, 'LIN', $profile['id'], $accesstoken);
             $this->setMessage("Connect", "LinkedIn connected!", "success");
