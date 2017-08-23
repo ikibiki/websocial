@@ -124,7 +124,7 @@ $redir = '';
                 </div>
 
                 <div class="form-group">
-                    <div align="center" class="g-recaptcha" data-sitekey="6LfO6CgUAAAAAMzWFzSVbuAVMVZ7qVsjEHzfcci-" data-theme="light" data-size="normal"></div>
+                    <div align="center" class="g-recaptcha" data-sitekey="<?php echo GRECAPTCHA_SITE; ?>" data-theme="light" data-size="normal"></div>
                 </div>
                 <div class="form-group">
                     <button id="btnreg" style="display: none;" type="submit" class="btn btn-default btn-block btn-lg" tabindex="5">Continue</button>
