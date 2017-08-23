@@ -12,6 +12,14 @@ class FacebookCI {
     }
 
     public function getLoginLink() {
+
+        $callbackurl = '';
+        if (ENVIRONMENT === 'development') {
+            $callbackurl = 'http://localhost/websocial/social/facebook';
+        } else {
+            $callbackurl = 'http://websocial.theshiftleft.com/social/facebook';
+        }
+
         $fb = new \Facebook\Facebook([
             'app_id' => FACEBOOK_APP,
             'app_secret' => FACEBOOK_SECRET,
@@ -20,11 +28,8 @@ class FacebookCI {
 
         $helper = $fb->getRedirectLoginHelper();
         $permissions = ['email', 'user_posts', 'user_status', 'publish_actions'];
-        if (ENVIRONMENT === 'development') {
-            $loginUrl = $helper->getLoginUrl('http://localhost/websocial/social/facebook', $permissions);
-        } else {
-            $loginUrl = $helper->getLoginUrl('http://websocial.theshiftleft.com/social/facebook', $permissions);
-        }
+
+        $loginUrl = $helper->getLoginUrl($callbackurl, $permissions);
         return htmlspecialchars($loginUrl);
     }
 
