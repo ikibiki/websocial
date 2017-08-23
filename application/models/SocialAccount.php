@@ -90,11 +90,12 @@ class SocialAccount extends CI_Model {
         }
     }
 
-    public function updateAccessToken($userid, $socialcode, $accesstoken) {
+    public function updateAccessToken($userid, $socialcode,$socialid, $accesstoken) {
         $this->dbi->reset_query();
 
         $this->dbi->where(array(
             'User_Ref' => $userid,
+            'SocialID'=>$socialid,
             'SocialCode' => $socialcode,
         ));
         $exist = $this->dbi->get("tblsocialaccount")->result();

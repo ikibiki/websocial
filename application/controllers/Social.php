@@ -25,10 +25,7 @@ class Social extends CI_Controller {
 
             if ($this->isSessionActive()) {
                 $profile = $this->facebookci->getFacebookProfile($accesstoken);
-                $social = $this->SocialAccount->getSocialAccountBySAID('FB', $profile['id']);
-                $user = $this->UserAccount->getUserInfo($social->User_Ref);
-                $this->session->set_userdata('user', $user);
-                $this->SocialAccount->updateAccessToken($user->ID, 'FB', $accesstoken);
+                $this->SocialAccount->updateAccessToken($user->ID, 'FB', $profile['id'], $accesstoken);
 
                 $this->setMessage("Connect", "Twitter connected!", "success");
                 redirect('app/connect');
@@ -61,10 +58,7 @@ class Social extends CI_Controller {
 
         if ($this->isSessionActive()) {
             $profile = $this->twitterci->getTwitterProfile($accesstoken, $accesstokensecret);
-            $social = $this->SocialAccount->getSocialAccountBySAID('TW', $profile->screen_name);
-            $user = $this->UserAccount->getUserInfo($social->User_Ref);
-            $this->session->set_userdata('user', $user);
-            $this->SocialAccount->updateAccessToken($user->ID, 'TW', $accesstoken . ',' . $accesstokensecret);
+            $this->SocialAccount->updateAccessToken($user->ID, 'TW', $profile->screen_name, $accesstoken . ',' . $accesstokensecret);
 
             $this->setMessage("Connect", "Twitter connected!", "success");
             redirect('app/connect');
@@ -94,10 +88,7 @@ class Social extends CI_Controller {
 
         if ($this->isSessionActive()) {
             $profile = $this->linkedinci->getLinkedinProfile($accesstoken);
-            $social = $this->SocialAccount->getSocialAccountBySAID('LIN', $profile['id']);
-            $user = $this->UserAccount->getUserInfo($social->User_Ref);
-            $this->session->set_userdata('user', $user);
-            $this->SocialAccount->updateAccessToken($user->ID, 'LIN', $accesstoken);
+            $this->SocialAccount->updateAccessToken($user->ID, 'LIN', $profile['id'], $accesstoken);
             $this->setMessage("Connect", "LinkedIn connected!", "success");
             redirect('app/connect');
         } else {
