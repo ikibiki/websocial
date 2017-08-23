@@ -78,7 +78,7 @@ $redir = '';
                         <a href="<?php echo site_url('register'); ?>">Register for an account</a> | <a href="#">Forgot your password?</a>
                     </div>
                     <div class="form-group">
-                        <div align="center" class="g-recaptcha" data-sitekey="6LfO6CgUAAAAAMzWFzSVbuAVMVZ7qVsjEHzfcci-" data-theme="light" data-size="normal"></div>
+                        <div align="center" class="g-recaptcha" data-sitekey="<?php echo GRECAPTCHA_SITE; ?>" data-theme="light" data-size="normal"></div>
                     </div>
                     <div class="form-group">
                         <button id="btnlogin" type="submit" class="btn btn-default btn-block" data-loading-text="Logging in..." tabindex="3">Continue</button>

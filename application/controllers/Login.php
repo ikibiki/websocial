@@ -25,26 +25,31 @@ class Login extends CI_Controller {
 
     public function process() {
 
-        $redir = $this->input->post('redir');
-
-        $email = $this->input->post('email');
-        $password = $this->input->post('password');
-        $result = $this->UserAccount->verifyAccess($email, $password);
-        if ($result) {
-
-            $this->session->set_userdata('user', $result);
-
-            if (empty($redir)) {
-                $redir = 'app';
-            }
-            $this->setMessage('Welcome', 'Welcome back!', 'info');
+        if (!$this->verifyRecaptcha()) {
+            $this->setMessage('Warning!', 'Invalid reCAPTCHA. Please try again.', 'danger');
         } else {
-            if (empty($redir)) {
-                $redir = 'login';
+
+            $redir = $this->input->post('redir');
+
+            $email = $this->input->post('email');
+            $password = $this->input->post('password');
+            $result = $this->UserAccount->verifyAccess($email, $password);
+            if ($result) {
+
+                $this->session->set_userdata('user', $result);
+
+                if (empty($redir)) {
+                    $redir = 'app';
+                }
+                $this->setMessage('Welcome', 'Welcome back!', 'info');
+            } else {
+                if (empty($redir)) {
+                    $redir = 'login';
+                }
+                $this->setMessage('Login', 'Wrong credentials.', 'danger');
             }
-            $this->setMessage('Login', 'Wrong credentials.', 'danger');
+            redirect($redir);
         }
-        redirect($redir);
     }
 
     public function facebook() {
@@ -65,6 +70,21 @@ class Login extends CI_Controller {
 
     protected function isSessionActive() {
         return $this->session->user;
+    }
+
+    protected function verifyRecaptcha() {
+        if (ENVIRONMENT === 'development') {
+            return true;
+        }
+        if ($this->input->post('g-recaptcha-response')) {
+            $secret = GRECAPTCHA_SECRET;
+            $verifyResponse = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret=' . $secret . '&response=' . $this->input->post('g-recaptcha-response'));
+            $responseData = json_decode($verifyResponse);
+            if ($responseData->success) {
+                return true;
+            }
+        }
+        return false;
     }
 
 }

@@ -94,3 +94,5 @@ define('GOOGLEPLUS_APP', '703056177410-m648n9c4635i12r10nlgoepqqvsvia1s.apps.goo
 define('GOOGLEPLUS_SECRET', 'Wnp6PpCDU7pgsWW9jBFJZhuG');
 define('LINKEDIN_APP', '81ce9zq8f81bbm');
 define('LINKEDIN_SECRET', 'C3U8ug8WrIBJw8xn');
+define('GRECAPTCHA_SITE', '6Lcw3S0UAAAAAFAdswds2oPlvxgnR1I7EoTDTL53');
+define('GRECAPTCHA_SECRET', '6Lcw3S0UAAAAANqIiNzikrxStUC4Y7uYc2Knuppk');
