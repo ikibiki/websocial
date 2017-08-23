@@ -16,7 +16,7 @@ class LinkedInCI {
                 array(
             'api_key' => LINKEDIN_APP,
             'api_secret' => LINKEDIN_SECRET,
-            'callback_url' => 'http://localhost/websocial/social/linkedin'
+            'callback_url' => $this->getCallbackUrl()
                 )
         );
         $url = $li->getLoginUrl(
@@ -34,7 +34,7 @@ class LinkedInCI {
                 array(
             'api_key' => LINKEDIN_APP,
             'api_secret' => LINKEDIN_SECRET,
-            'callback_url' => 'http://localhost/websocial/social/linkedin'
+            'callback_url' => $this->getCallbackUrl()
                 )
         );
         $li->setAccessToken($accesstoken);
@@ -47,7 +47,7 @@ class LinkedInCI {
                 array(
             'api_key' => LINKEDIN_APP,
             'api_secret' => LINKEDIN_SECRET,
-            'callback_url' => 'http://localhost/websocial/social/linkedin'
+            'callback_url' => $this->getCallbackUrl()
                 )
         );
         $token = $li->getAccessToken($_GET['code']);
@@ -60,9 +60,8 @@ class LinkedInCI {
                 array(
             'api_key' => LINKEDIN_APP,
             'api_secret' => LINKEDIN_SECRET,
-            'callback_url' => 'http://localhost/websocial/social/linkedin'
-                )
-        );
+            'callback_url' => $this->getCallbackUrl(),
+        ));
         $li->setAccessToken($accesstoken);
         $info = $li->post('/people/~/shares?format=json)', array(
             'comment' => $msg,
@@ -75,6 +74,14 @@ class LinkedInCI {
 
     public function revokeLinkedin() {
         
+    }
+
+    private function getCallbackUrl() {
+        if (ENVIRONMENT === 'development') {
+            return 'http://localhost/websocial/social/linkedin';
+        } else {
+            return 'http://websocial.theshiftleft.com/social/linkedin';
+        }
     }
 
     protected function setMessage($title, $text, $type) {

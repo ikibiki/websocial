@@ -12,10 +12,18 @@ class TwitterCI {
     }
 
     public function loginTwitter() {
+
+        $callbackurl = '';
+        if (ENVIRONMENT === 'development') {
+            $callbackurl = 'http://localhost/websocial/social/twitter';
+        } else {
+            $callbackurl = 'http://websocial.theshiftleft.com/social/twitter';
+        }
+
         \Codebird\Codebird::setConsumerKey(TWITTER_APP, TWITTER_SECRET); // static, see README
         $cb = \Codebird\Codebird::getInstance();
         $reply = $cb->oauth_requestToken([
-            'oauth_callback' => 'http://localhost/websocial/social/twitter'
+            'oauth_callback' => $callbackurl
         ]);
 
         $cb->setToken($reply->oauth_token, $reply->oauth_token_secret);

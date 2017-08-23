@@ -20,7 +20,11 @@ class FacebookCI {
 
         $helper = $fb->getRedirectLoginHelper();
         $permissions = ['email', 'user_posts', 'user_status', 'publish_actions'];
-        $loginUrl = $helper->getLoginUrl('http://localhost/websocial/social/facebook', $permissions);
+        if (ENVIRONMENT === 'development') {
+            $loginUrl = $helper->getLoginUrl('http://localhost/websocial/social/facebook', $permissions);
+        } else {
+            $loginUrl = $helper->getLoginUrl('http://websocial.theshiftleft.com/social/facebook', $permissions);
+        }
         return htmlspecialchars($loginUrl);
     }
 
