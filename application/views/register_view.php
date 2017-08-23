@@ -43,6 +43,7 @@ $redir = '';
             <div class="login-form center-block">
                 <br/>
                 <h1 class="text-center logo"><img src="assets/img/hdlogo.png" width="300px" alt="Logo"/></h1>
+                <a class="btn btn-primary btn-block" href="<?php echo site_url('login'); ?>">Login</a>
                 <hr/>
                 <h1 class="text-center" style="color: #6190D4">Register</h1>
                 <?php
@@ -130,92 +131,92 @@ $redir = '';
                     <span class="help-block"></span>
                 </div>
                 <?php echo form_close(); ?>
-                <hr/>
-                <div class="form-group">
-                    <a class="btn btn-block btn-social btn-lg btn-adn">
-                        <span class="fa fa-adn"></span> Sign in with App.net
-                    </a>
-                    <a class="btn btn-block btn-social btn-lg btn-bitbucket">
-                        <span class="fa fa-bitbucket"></span> Sign in with Bitbucket
-                    </a>
-                    <a class="btn btn-block btn-social btn-lg btn-dropbox">
-                        <span class="fa fa-dropbox"></span> Sign in with Dropbox
-                    </a>
-                    <a class="btn btn-block btn-social btn-lg btn-facebook" href="#">
-                        <span class="fa fa-facebook"></span> Sign in with Facebook
-                    </a>
-                    <a class="btn btn-block btn-social btn-lg btn-flickr">
-                        <span class="fa fa-flickr"></span> Sign in with Flickr
-                    </a>
-                    <a class="btn btn-block btn-social btn-lg btn-foursquare">
-                        <span class="fa fa-foursquare"></span> Sign in with Foursquare
-                    </a>
-                    <a class="btn btn-block btn-social btn-lg btn-github">
-                        <span class="fa fa-github"></span> Sign in with GitHub
-                    </a>
-                    <a class="btn btn-block btn-social btn-lg btn-google">
-                        <span class="fa fa-google"></span> Sign in with Google
-                    </a>
-                    <a class="btn btn-block btn-social btn-lg btn-instagram">
-                        <span class="fa fa-instagram"></span> Sign in with Instagram
-                    </a>
-                    <a class="btn btn-block btn-social btn-lg btn-linkedin">
-                        <span class="fa fa-linkedin"></span> Sign in with LinkedIn
-                    </a>
-                    <a class="btn btn-block btn-social btn-lg btn-microsoft">
-                        <span class="fa fa-windows"></span> Sign in with Microsoft
-                    </a>
-                    <a class="btn btn-block btn-social btn-lg btn-odnoklassniki">
-                        <span class="fa fa-odnoklassniki"></span> Sign in with Odnoklassniki
-                    </a>
-                    <a class="btn btn-block btn-social btn-lg btn-openid">
-                        <span class="fa fa-openid"></span> Sign in with OpenID
-                    </a>
-                    <a class="btn btn-block btn-social btn-lg btn-pinterest">
-                        <span class="fa fa-pinterest"></span> Sign in with Pinterest
-                    </a>
-                    <a class="btn btn-block btn-social btn-lg btn-reddit">
-                        <span class="fa fa-reddit"></span> Sign in with Reddit
-                    </a>
-                    <a class="btn btn-block btn-social btn-lg btn-soundcloud">
-                        <span class="fa fa-soundcloud"></span> Sign in with SoundCloud
-                    </a>
-                    <a class="btn btn-block btn-social btn-lg btn-tumblr">
-                        <span class="fa fa-tumblr"></span> Sign in with Tumblr
-                    </a>
-                    <a class="btn btn-block btn-social btn-lg btn-twitter">
-                        <span class="fa fa-twitter"></span> Sign in with Twitter
-                    </a>
-                    <a class="btn btn-block btn-social btn-lg btn-vimeo">
-                        <span class="fa fa-vimeo-square"></span> Sign in with Vimeo
-                    </a>
-                    <a class="btn btn-block btn-social btn-lg btn-vk">
-                        <span class="fa fa-vk"></span> Sign in with VK
-                    </a>
-                    <a class="btn btn-block btn-social btn-lg btn-yahoo">
-                        <span class="fa fa-yahoo"></span> Sign in with Yahoo!
-                    </a>
-                </div>
+                <!--                <hr/>
+                                <div class="form-group">
+                                    <a class="btn btn-block btn-social btn-lg btn-adn">
+                                        <span class="fa fa-adn"></span> Sign in with App.net
+                                    </a>
+                                    <a class="btn btn-block btn-social btn-lg btn-bitbucket">
+                                        <span class="fa fa-bitbucket"></span> Sign in with Bitbucket
+                                    </a>
+                                    <a class="btn btn-block btn-social btn-lg btn-dropbox">
+                                        <span class="fa fa-dropbox"></span> Sign in with Dropbox
+                                    </a>
+                                    <a class="btn btn-block btn-social btn-lg btn-facebook" href="#">
+                                        <span class="fa fa-facebook"></span> Sign in with Facebook
+                                    </a>
+                                    <a class="btn btn-block btn-social btn-lg btn-flickr">
+                                        <span class="fa fa-flickr"></span> Sign in with Flickr
+                                    </a>
+                                    <a class="btn btn-block btn-social btn-lg btn-foursquare">
+                                        <span class="fa fa-foursquare"></span> Sign in with Foursquare
+                                    </a>
+                                    <a class="btn btn-block btn-social btn-lg btn-github">
+                                        <span class="fa fa-github"></span> Sign in with GitHub
+                                    </a>
+                                    <a class="btn btn-block btn-social btn-lg btn-google">
+                                        <span class="fa fa-google"></span> Sign in with Google
+                                    </a>
+                                    <a class="btn btn-block btn-social btn-lg btn-instagram">
+                                        <span class="fa fa-instagram"></span> Sign in with Instagram
+                                    </a>
+                                    <a class="btn btn-block btn-social btn-lg btn-linkedin">
+                                        <span class="fa fa-linkedin"></span> Sign in with LinkedIn
+                                    </a>
+                                    <a class="btn btn-block btn-social btn-lg btn-microsoft">
+                                        <span class="fa fa-windows"></span> Sign in with Microsoft
+                                    </a>
+                                    <a class="btn btn-block btn-social btn-lg btn-odnoklassniki">
+                                        <span class="fa fa-odnoklassniki"></span> Sign in with Odnoklassniki
+                                    </a>
+                                    <a class="btn btn-block btn-social btn-lg btn-openid">
+                                        <span class="fa fa-openid"></span> Sign in with OpenID
+                                    </a>
+                                    <a class="btn btn-block btn-social btn-lg btn-pinterest">
+                                        <span class="fa fa-pinterest"></span> Sign in with Pinterest
+                                    </a>
+                                    <a class="btn btn-block btn-social btn-lg btn-reddit">
+                                        <span class="fa fa-reddit"></span> Sign in with Reddit
+                                    </a>
+                                    <a class="btn btn-block btn-social btn-lg btn-soundcloud">
+                                        <span class="fa fa-soundcloud"></span> Sign in with SoundCloud
+                                    </a>
+                                    <a class="btn btn-block btn-social btn-lg btn-tumblr">
+                                        <span class="fa fa-tumblr"></span> Sign in with Tumblr
+                                    </a>
+                                    <a class="btn btn-block btn-social btn-lg btn-twitter">
+                                        <span class="fa fa-twitter"></span> Sign in with Twitter
+                                    </a>
+                                    <a class="btn btn-block btn-social btn-lg btn-vimeo">
+                                        <span class="fa fa-vimeo-square"></span> Sign in with Vimeo
+                                    </a>
+                                    <a class="btn btn-block btn-social btn-lg btn-vk">
+                                        <span class="fa fa-vk"></span> Sign in with VK
+                                    </a>
+                                    <a class="btn btn-block btn-social btn-lg btn-yahoo">
+                                        <span class="fa fa-yahoo"></span> Sign in with Yahoo!
+                                    </a>-->
             </div>
-
-            <hr/>
-
         </div>
 
-        <script>
-            $.ripple(".btn", {
-                debug: false, // Turn Ripple.js logging on/off
-                on: 'mousedown', // The event to trigger a ripple effect
+        <hr/>
 
-                color: "auto", // Set the background color. If set to "auto", it will use the text color
-                multi: true, // Allow multiple ripples per element
+    </div>
 
-                easing: 'easing' // The CSS3 easing function of the ripple
-            });
+    <script>
+        $.ripple(".btn", {
+            debug: false, // Turn Ripple.js logging on/off
+            on: 'mousedown', // The event to trigger a ripple effect
 
-            $('#agreeable').click(function () {
-                $("#btnreg").toggle(this.checked);
-            });
-        </script>
-    </body>
+            color: "auto", // Set the background color. If set to "auto", it will use the text color
+            multi: true, // Allow multiple ripples per element
+
+            easing: 'easing' // The CSS3 easing function of the ripple
+        });
+
+        $('#agreeable').click(function () {
+            $("#btnreg").toggle(this.checked);
+        });
+    </script>
+</body>
 </html>

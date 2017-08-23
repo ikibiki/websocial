@@ -26,7 +26,7 @@ $redir = '';
                 font-family: "Roboto";
             }
             .login-form{
-                max-width: 720px;
+                max-width: 480px;
             }
             .g-recaptcha{
                 transform:scale(0.98);-webkit-transform:scale(0.98);transform-origin:0 0;-webkit-transform-origin:0 0;
@@ -54,106 +54,100 @@ $redir = '';
                     <?php
                 }
                 ?>
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="well well-lg">
-                            <?php echo form_open('login/process'); ?>
-                            <input type="hidden" name="redir" value="<?php echo $redir; ?>">
-                            <div class="form-group">
-                                <label class="control-label">Email</label>
-                                <div class="input-group">
-                                    <div class="input-group-addon"><i class="fa fa-at fa-fw fa-lg"></i></div>
-                                    <input type="email" class="form-control" name="email" placeholder="Email" tabindex="1" required>
-                                    <span></span>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label">Password </label>
-                                <div class="input-group">
-                                    <div class="input-group-addon"><i class="fa fa-asterisk fa-fw fa-lg"></i></div>
-                                    <input type="password" class="form-control" name="password" placeholder="Password" tabindex="2" required>
-                                    <span></span>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <a href="#">Forgot your password?</a>
-                            </div>
-                            <div class="form-group">
-                                <div align="center" class="g-recaptcha" data-sitekey="6LfO6CgUAAAAAMzWFzSVbuAVMVZ7qVsjEHzfcci-" data-theme="light" data-size="normal"></div>
-                            </div>
-                            <div class="form-group">
-                                <button id="btnlogin" type="submit" class="btn btn-default btn-block" data-loading-text="Logging in..." tabindex="3">Continue</button>
-                            </div>
-                            <?php echo form_close(); ?>
+
+                <div class="well well-lg">
+                    <?php echo form_open('login/process'); ?>
+                    <input type="hidden" name="redir" value="<?php echo $redir; ?>">
+                    <div class="form-group">
+                        <label class="control-label">Email</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="fa fa-at fa-fw fa-lg"></i></div>
+                            <input type="email" class="form-control" name="email" placeholder="Email" tabindex="1" required>
+                            <span></span>
                         </div>
                     </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <a class="btn btn-block btn-social btn-adn" onclick="_gaq.push(['_trackEvent', 'btn-social', 'click', 'btn-adn']);">
-                                <span class="fa fa-adn"></span> Sign in with App.net
-                            </a>
-                            <a class="btn btn-block btn-social btn-bitbucket">
-                                <span class="fa fa-bitbucket"></span> Sign in with Bitbucket
-                            </a>
-                            <a class="btn btn-block btn-social btn-dropbox">
-                                <span class="fa fa-dropbox"></span> Sign in with Dropbox
-                            </a>
-                            <a class="btn btn-block btn-social btn-facebook" href="<?php echo $fbloginurl; ?>">
-                                <span class="fa fa-facebook"></span> Sign in with Facebook
-                            </a>
-                            <a class="btn btn-block btn-social btn-flickr">
-                                <span class="fa fa-flickr"></span> Sign in with Flickr
-                            </a>
-                            <a class="btn btn-block btn-social btn-foursquare">
-                                <span class="fa fa-foursquare"></span> Sign in with Foursquare
-                            </a>
-                            <a class="btn btn-block btn-social btn-github">
-                                <span class="fa fa-github"></span> Sign in with GitHub
-                            </a>
-                            <a class="btn btn-block btn-social btn-google">
-                                <span class="fa fa-google"></span> Sign in with Google
-                            </a>
-                            <a class="btn btn-block btn-social btn-instagram">
-                                <span class="fa fa-instagram"></span> Sign in with Instagram
-                            </a>
-                            <a class="btn btn-block btn-social btn-linkedin">
-                                <span class="fa fa-linkedin"></span> Sign in with LinkedIn
-                            </a>
-                            <a class="btn btn-block btn-social btn-microsoft">
-                                <span class="fa fa-windows"></span> Sign in with Microsoft
-                            </a>
-                            <a class="btn btn-block btn-social btn-odnoklassniki">
-                                <span class="fa fa-odnoklassniki"></span> Sign in with Odnoklassniki
-                            </a>
-                            <a class="btn btn-block btn-social btn-openid">
-                                <span class="fa fa-openid"></span> Sign in with OpenID
-                            </a>
-                            <a class="btn btn-block btn-social btn-pinterest">
-                                <span class="fa fa-pinterest"></span> Sign in with Pinterest
-                            </a>
-                            <a class="btn btn-block btn-social btn-reddit">
-                                <span class="fa fa-reddit"></span> Sign in with Reddit
-                            </a>
-                            <a class="btn btn-block btn-social btn-soundcloud">
-                                <span class="fa fa-soundcloud"></span> Sign in with SoundCloud
-                            </a>
-                            <a class="btn btn-block btn-social btn-tumblr">
-                                <span class="fa fa-tumblr"></span> Sign in with Tumblr
-                            </a>
-                            <a class="btn btn-block btn-social btn-twitter" href="<?php echo $twitterloginurl; ?>">
-                                <span class="fa fa-twitter"></span> Sign in with Twitter
-                            </a>
-                            <a class="btn btn-block btn-social btn-vimeo">
-                                <span class="fa fa-vimeo-square"></span> Sign in with Vimeo
-                            </a>
-                            <a class="btn btn-block btn-social btn-vk">
-                                <span class="fa fa-vk"></span> Sign in with VK
-                            </a>
-                            <a class="btn btn-block btn-social btn-yahoo">
-                                <span class="fa fa-yahoo"></span> Sign in with Yahoo!
-                            </a>
+                    <div class="form-group">
+                        <label class="control-label">Password </label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="fa fa-asterisk fa-fw fa-lg"></i></div>
+                            <input type="password" class="form-control" name="password" placeholder="Password" tabindex="2" required>
+                            <span></span>
                         </div>
                     </div>
+                    <div class="form-group">
+                        <a href="<?php echo site_url('register'); ?>">Register for an account</a> | <a href="#">Forgot your password?</a>
+                    </div>
+                    <div class="form-group">
+                        <div align="center" class="g-recaptcha" data-sitekey="6LfO6CgUAAAAAMzWFzSVbuAVMVZ7qVsjEHzfcci-" data-theme="light" data-size="normal"></div>
+                    </div>
+                    <div class="form-group">
+                        <button id="btnlogin" type="submit" class="btn btn-default btn-block" data-loading-text="Logging in..." tabindex="3">Continue</button>
+                    </div>
+                    <?php echo form_close(); ?>
+                    <hr/>
+                    <!--                            <a class="btn btn-block btn-social btn-adn">
+                                                <span class="fa fa-adn"></span> Sign in with App.net
+                                            </a>
+                                            <a class="btn btn-block btn-social btn-bitbucket">
+                                                <span class="fa fa-bitbucket"></span> Sign in with Bitbucket
+                                            </a>
+                                            <a class="btn btn-block btn-social btn-dropbox">
+                                                <span class="fa fa-dropbox"></span> Sign in with Dropbox
+                                            </a>-->
+                    <a class="btn btn-block btn-social btn-facebook" href="<?php echo $fbloginurl; ?>">
+                        <span class="fa fa-facebook"></span> Sign in with Facebook
+                    </a>
+                    <!--                            <a class="btn btn-block btn-social btn-flickr">
+                                                    <span class="fa fa-flickr"></span> Sign in with Flickr
+                                                </a>
+                                                <a class="btn btn-block btn-social btn-foursquare">
+                                                    <span class="fa fa-foursquare"></span> Sign in with Foursquare
+                                                </a>
+                                                <a class="btn btn-block btn-social btn-github">
+                                                    <span class="fa fa-github"></span> Sign in with GitHub
+                                                </a>
+                                                <a class="btn btn-block btn-social btn-google">
+                                                    <span class="fa fa-google"></span> Sign in with Google
+                                                </a>
+                                                <a class="btn btn-block btn-social btn-instagram">
+                                                    <span class="fa fa-instagram"></span> Sign in with Instagram
+                                                </a>-->
+                    <a class="btn btn-block btn-social btn-linkedin" href="<?php echo $linkedinloginurl; ?>">
+                        <span class="fa fa-linkedin"></span> Sign in with LinkedIn
+                    </a>
+                    <!--                            <a class="btn btn-block btn-social btn-microsoft">
+                                                    <span class="fa fa-windows"></span> Sign in with Microsoft
+                                                </a>
+                                                <a class="btn btn-block btn-social btn-odnoklassniki">
+                                                    <span class="fa fa-odnoklassniki"></span> Sign in with Odnoklassniki
+                                                </a>
+                                                <a class="btn btn-block btn-social btn-openid">
+                                                    <span class="fa fa-openid"></span> Sign in with OpenID
+                                                </a>
+                                                <a class="btn btn-block btn-social btn-pinterest">
+                                                    <span class="fa fa-pinterest"></span> Sign in with Pinterest
+                                                </a>
+                                                <a class="btn btn-block btn-social btn-reddit">
+                                                    <span class="fa fa-reddit"></span> Sign in with Reddit
+                                                </a>
+                                                <a class="btn btn-block btn-social btn-soundcloud">
+                                                    <span class="fa fa-soundcloud"></span> Sign in with SoundCloud
+                                                </a>
+                                                <a class="btn btn-block btn-social btn-tumblr">
+                                                    <span class="fa fa-tumblr"></span> Sign in with Tumblr
+                                                </a>-->
+                    <a class="btn btn-block btn-social btn-twitter" href="<?php echo $twitterloginurl; ?>">
+                        <span class="fa fa-twitter"></span> Sign in with Twitter
+                    </a>
+                    <!--                            <a class="btn btn-block btn-social btn-vimeo">
+                                                    <span class="fa fa-vimeo-square"></span> Sign in with Vimeo
+                                                </a>
+                                                <a class="btn btn-block btn-social btn-vk">
+                                                    <span class="fa fa-vk"></span> Sign in with VK
+                                                </a>
+                                                <a class="btn btn-block btn-social btn-yahoo">
+                                                    <span class="fa fa-yahoo"></span> Sign in with Yahoo!
+                                                </a>-->
                 </div>
 
                 <hr/>

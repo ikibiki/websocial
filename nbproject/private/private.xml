@@ -5,9 +5,10 @@
         <group>
             <file>file:/C:/xampp/htdocs/websocial/application/controllers/Register.php</file>
             <file>file:/C:/xampp/htdocs/websocial/application/views/login_view.php</file>
+            <file>file:/C:/xampp/htdocs/websocial/application/views/register_view.php</file>
             <file>file:/C:/xampp/htdocs/websocial/application/controllers/Login.php</file>
+            <file>file:/C:/xampp/htdocs/websocial/application/models/SocialAccount.php</file>
             <file>file:/C:/xampp/htdocs/websocial/application/controllers/Social.php</file>
-            <file>file:/C:/xampp/htdocs/websocial/application/libraries/FacebookCI.php</file>
             <file>file:/C:/xampp/htdocs/websocial/application/controllers/App.php</file>
             <file>file:/C:/xampp/htdocs/websocial/application/views/default_view.php</file>
         </group>

@@ -121,7 +121,7 @@ class FacebookCI {
 
         $graphNode = $response->getGraphNode();
 
-        echo 'Posted with id: ' . $graphNode['id'];
+        return $graphNode;
     }
 
     public function revokeFB() {

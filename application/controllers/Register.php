@@ -27,7 +27,7 @@ class Register extends CI_Controller {
             'Password' => $password,
         ));
         if (empty($redir)) {
-            $redir = site_url('app');
+            $redir = site_url('app/connect');
         }
         $this->setMessage('Register','Account successfully registered!');
         redirect($redir);

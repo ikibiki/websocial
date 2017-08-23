@@ -10,9 +10,16 @@ class Login extends CI_Controller {
     }
 
     public function index() {
+
+        if ($this->isSessionActive()) {
+            redirect('app');
+            exit;
+        }
+
         $data["msg"] = $this->session->flashdata('msg');
         $data['fbloginurl'] = $this->facebookci->getLoginLink();
         $data['twitterloginurl'] = site_url('social/twitter/1');
+        $data['linkedinloginurl'] = $this->linkedinci->getLoginLink();
         $this->load->view('login_view', $data);
     }
 
@@ -54,6 +61,10 @@ class Login extends CI_Controller {
 
     protected function setMessage($title, $text, $type) {
         $this->session->set_flashdata('msg', array('title' => $title, 'text' => $text, 'type' => $type));
+    }
+
+    protected function isSessionActive() {
+        return $this->session->user;
     }
 
 }
