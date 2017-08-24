@@ -63,20 +63,20 @@ class App extends CI_Controller {
             if ($fb) {
                 $accesstoken = $this->SocialAccount->getSocialAccountByUser('FB', $user->ID)->AccessToken;
                 $resp = $this->facebookci->createPost($msg, $accesstoken);
-                $status = 'Facebook successfully posted <a href="https://www.facebook.com/' . $resp['id'] . '">here</a>! ';
+                $status .= 'Facebook successfully posted <a href="https://www.facebook.com/' . $resp['id'] . '">here</a>! ';
             }
 
             if ($tw) {
                 $twat = $this->SocialAccount->getSocialAccountByUser('TW', $user->ID);
                 $ats = explode(',', $twat->AccessToken);
                 $resp = $this->twitterci->tweet($msg, $ats[0], $ats[1]);
-                $status = 'See your  <a href="https://twitter.com/' . $twat->SocialID . '/status/' . $resp->id . '">tweet</a>! ';
+                $status .= 'See your  <a href="https://twitter.com/' . $twat->SocialID . '/status/' . $resp->id . '">tweet</a>! ';
             }
 
             if ($lin) {
                 $accesstoken = $this->SocialAccount->getSocialAccountByUser('LIN', $user->ID)->AccessToken;
                 $resp = $this->linkedinci->createPost($accesstoken, $msg);
-                $status = 'Linked in status posted  <a href="' . $resp['updateUrl'] . '">here</a>! ';
+                $status .= 'Linked in status posted  <a href="' . $resp['updateUrl'] . '">here</a>! ';
             }
             $this->setMessage('Post', $status, 'info');
         }
