@@ -41,14 +41,14 @@ class Social extends CI_Controller {
                     $this->session->set_userdata('user', $user);
 
                     if (!empty($profile) && ($profile != null)) {
-                        $this->SocialAccount->updateAccessToken($user->ID, 'FB', $accesstoken);
+                        $this->SocialAccount->updateAccessToken($user->ID, 'FB', $profile['id'], $accesstoken);
                     }
                     $this->setMessage("Welcome", "You logged in with facebook!", "success");
                     redirect('app');
                 } else {
-                    
-                $this->setMessage("Social Combo", "Register for a free account!", "info");
-                redirect('register?social=facebook');
+
+                    $this->setMessage("Social Combo", "Register for a free account!", "info");
+                    redirect('register?social=facebook');
 //                    
 //                    $this->setMessage("Social Combo", "Oops... Your facebook account is not registered.", "danger");
 //                    redirect('login');
@@ -92,7 +92,7 @@ class Social extends CI_Controller {
                 $this->setMessage("Welcome", "You logged in with twitter", "success");
                 redirect('app');
             } else {
-                
+
                 $this->setMessage("Social Combo", "Register for a free account!", "info");
                 redirect('register?social=twitter');
 //                $this->setMessage("Social Combo", "Oh.. Your twitter account is not registered.", "danger");
