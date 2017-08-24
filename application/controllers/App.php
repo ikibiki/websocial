@@ -17,6 +17,9 @@ class App extends CI_Controller {
     public function index() {
         if ($this->isSessionActive()) {
             $data["user"] = $this->isSessionActive();
+            $data['safb'] = $this->SocialAccount->getSocialAccountByUser('FB', $data["user"]->ID);
+            $data['satw'] = $this->SocialAccount->getSocialAccountByUser('TW', $data["user"]->ID);
+            $data['salin'] = $this->SocialAccount->getSocialAccountByUser('LIN', $data["user"]->ID);
             $data["msg"] = $this->session->flashdata('msg');
             $data["default"] = true;
             $this->load->view('default_view', $data);

@@ -56,13 +56,19 @@ $redir = '';
                     <?php
                 }
                 ?>
-                <?php echo form_open('register/process', array('id' => 'frmregister')); ?>
-                <input type="hidden" name="redir" value="<?php echo $redir; ?>">
+                <?php
+                echo form_open('register/process', array('id' => 'frmregister'));
+
+                if (isset($profile)) {
+                    echo form_hidden('socialcode', $profile->SocialCode);
+                }
+                echo form_hidden('redir', $redir);
+                ?>
                 <div class="form-group">
                     <label class="control-label">Name </label>
                     <div class="input-group">
                         <div class="input-group-addon"><i class="fa fa-user fa-fw fa-lg"></i></div>
-                        <input type="text" class="form-control input-lg" name="name" placeholder="Name" tabindex="1" required>
+                        <input type="text" class="form-control input-lg" name="name" placeholder="Name" tabindex="1" required <?php echo isset($profile) && $profile->Name ? 'value="' . $profile->Name . '" readonly' : '' ?>>
                         <span class="help-block"></span>
                     </div>
                 </div>
@@ -70,7 +76,7 @@ $redir = '';
                     <label class="control-label">Email</label>
                     <div class="input-group">
                         <div class="input-group-addon"><i class="fa fa-at fa-fw fa-lg"></i></div>
-                        <input type="email" class="form-control input-lg" name="email" placeholder="Email" tabindex="2" required>
+                        <input type="email" class="form-control input-lg" name="email" placeholder="Email" tabindex="2" required <?php echo isset($profile) && $profile->Email ? 'value="' . $profile->Email . '" readonly' : '' ?>>
                         <span class="help-block"></span>
                     </div>
                 </div>
@@ -80,14 +86,6 @@ $redir = '';
                         <div class="input-group-addon"><i class="fa fa-asterisk fa-fw fa-lg"></i></div>
                         <input type="password" class="form-control input-lg" name="password" placeholder="Password" tabindex="3" required>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label class="control-label">Confirm password </label>
-                    <div class="input-group">
-                        <div class="input-group-addon"><i class="fa fa-asterisk fa-fw fa-lg"></i></div>
-                        <input type="password" class="form-control input-lg" name="confirmpassword" placeholder="Password" tabindex="4" required>
-                    </div>
-                    <span class="help-block helppw"></span>
                 </div>
                 <h3 class="text-center">Terms and conditions</h3>
                 <p>
@@ -130,7 +128,7 @@ $redir = '';
                     <button id="btnreg" style="display: none;" type="submit" class="btn btn-default btn-block btn-lg" tabindex="5">Continue</button>
                     <span class="help-block"></span>
                 </div>
-                <?php echo form_close(); ?>
+<?php echo form_close(); ?>
                 <!--                <hr/>
                                 <div class="form-group">
                                     <a class="btn btn-block btn-social btn-lg btn-adn">

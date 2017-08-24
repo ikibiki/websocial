@@ -66,21 +66,31 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             ?>
                             <textarea name="msg" onkeyup="countChar(this)" maxlength="140" class="form-control" placeholder="What is on your mind?" rows="3" required></textarea>
                             <span class="help-block">
-                                <div class="pretty plain toggle">
-                                    <input name="FB" type="checkbox"/> 
-                                    <label class="text-danger"><i class="fa fa-facebook-official"></i> Facebook</label>
-                                    <label class="text-info"><i class="fa fa-facebook-official"></i> <strong>Facebook</strong></label>
-                                </div>
-                                <div class="pretty plain toggle">
-                                    <input name="TW" type="checkbox"/> 
-                                    <label class="text-danger"><i class="fa fa-twitter-square"></i> Twitter</label>
-                                    <label class="text-info"><i class="fa fa-twitter-square"></i> <strong>Twitter</strong></label>
-                                </div>
-                                <div class="pretty plain toggle">
-                                    <input name="LIN"  type="checkbox"/> 
-                                    <label class="text-danger"><i class="fa fa-linkedin-square"></i> Linked In</label>
-                                    <label class="text-info"><i class="fa fa-linkedin-square"></i> <strong>Linked In</strong></label>
-                                </div>
+                                <?php if ($safb) { ?>
+                                    <div class="pretty plain toggle">
+                                        <input name="FB" type="checkbox"/> 
+                                        <label class="text-danger"><i class="fa fa-facebook-official"></i> Facebook</label>
+                                        <label class="text-info"><i class="fa fa-facebook-official"></i> <strong>Facebook</strong></label>
+                                    </div>
+                                    <?php
+                                }
+                                if ($satw) {
+                                    ?>
+                                    <div class="pretty plain toggle">
+                                        <input name="TW" type="checkbox"/> 
+                                        <label class="text-danger"><i class="fa fa-twitter-square"></i> Twitter</label>
+                                        <label class="text-info"><i class="fa fa-twitter-square"></i> <strong>Twitter</strong></label>
+                                    </div>
+                                    <?php
+                                }
+                                if ($salin) {
+                                    ?>
+                                    <div class="pretty plain toggle">
+                                        <input name="LIN"  type="checkbox"/> 
+                                        <label class="text-danger"><i class="fa fa-linkedin-square"></i> Linked In</label>
+                                        <label class="text-info"><i class="fa fa-linkedin-square"></i> <strong>Linked In</strong></label>
+                                    </div>
+                                <?php } ?>
                             </span>
 
                             <button type="submit" class="btn btn-default">Post</button>

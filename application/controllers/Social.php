@@ -26,8 +26,10 @@ class Social extends CI_Controller {
             if ($this->isSessionActive()) {
                 $user = $this->isSessionActive();
                 $profile = $this->facebookci->getFacebookProfile($accesstoken);
-                $this->SocialAccount->updateAccessToken($user->ID, 'FB', $profile['id'], $accesstoken);
 
+                if (!empty($profile) && ($profile != null)) {
+                    $this->SocialAccount->updateAccessToken($user->ID, 'FB', $profile['id'], $accesstoken);
+                }
                 $this->setMessage("Connect", "Facebook connected!", "success");
                 redirect('app/connect');
             } else {
@@ -37,12 +39,19 @@ class Social extends CI_Controller {
                     $social = $this->SocialAccount->getSocialAccountBySAID('FB', $profile['id']);
                     $user = $this->UserAccount->getUserInfo($social->User_Ref);
                     $this->session->set_userdata('user', $user);
-                    $this->SocialAccount->updateAccessToken($user->ID, 'FB', $accesstoken);
+
+                    if (!empty($profile) && ($profile != null)) {
+                        $this->SocialAccount->updateAccessToken($user->ID, 'FB', $accesstoken);
+                    }
                     $this->setMessage("Welcome", "You logged in with facebook!", "success");
                     redirect('app');
                 } else {
-                    $this->setMessage("Social Combo", "Oops... Your facebook account is not registered.", "danger");
-                    redirect('login');
+                    
+                $this->setMessage("Social Combo", "Register for a free account!", "info");
+                redirect('register?social=facebook');
+//                    
+//                    $this->setMessage("Social Combo", "Oops... Your facebook account is not registered.", "danger");
+//                    redirect('login');
                 }
             }
         }
@@ -60,7 +69,10 @@ class Social extends CI_Controller {
         if ($this->isSessionActive()) {
             $user = $this->isSessionActive();
             $profile = $this->twitterci->getTwitterProfile($accesstoken, $accesstokensecret);
-            $this->SocialAccount->updateAccessToken($user->ID, 'TW', $profile->screen_name, $accesstoken . ',' . $accesstokensecret);
+
+            if (!empty($profile) && ($profile != null)) {
+                $this->SocialAccount->updateAccessToken($user->ID, 'TW', $profile->screen_name, $accesstoken . ',' . $accesstokensecret);
+            }
 
             $this->setMessage("Connect", "Twitter connected!", "success");
             redirect('app/connect');
@@ -73,13 +85,18 @@ class Social extends CI_Controller {
                 $social = $this->SocialAccount->getSocialAccountBySAID('TW', $profile->screen_name);
                 $user = $this->UserAccount->getUserInfo($social->User_Ref);
                 $this->session->set_userdata('user', $user);
-                $this->SocialAccount->updateAccessToken($user->ID, 'TW', $accesstoken . ',' . $accesstokensecret);
 
+                if (!empty($profile) && ($profile != null)) {
+                    $this->SocialAccount->updateAccessToken($user->ID, 'TW', $accesstoken . ',' . $accesstokensecret);
+                }
                 $this->setMessage("Welcome", "You logged in with twitter", "success");
                 redirect('app');
             } else {
-                $this->setMessage("Social Combo", "Oh.. Your twitter account is not registered.", "danger");
-                redirect('login');
+                
+                $this->setMessage("Social Combo", "Register for a free account!", "info");
+                redirect('register?social=twitter');
+//                $this->setMessage("Social Combo", "Oh.. Your twitter account is not registered.", "danger");
+//                redirect('login');
             }
         }
     }
@@ -91,7 +108,10 @@ class Social extends CI_Controller {
         if ($this->isSessionActive()) {
             $user = $this->isSessionActive();
             $profile = $this->linkedinci->getLinkedinProfile($accesstoken);
-            $this->SocialAccount->updateAccessToken($user->ID, 'LIN', $profile['id'], $accesstoken);
+
+            if (!empty($profile) && ($profile != null)) {
+                $this->SocialAccount->updateAccessToken($user->ID, 'LIN', $profile['id'], $accesstoken);
+            }
             $this->setMessage("Connect", "LinkedIn connected!", "success");
             redirect('app/connect');
         } else {
@@ -100,12 +120,17 @@ class Social extends CI_Controller {
                 $social = $this->SocialAccount->getSocialAccountBySAID('LIN', $profile['id']);
                 $user = $this->UserAccount->getUserInfo($social->User_Ref);
                 $this->session->set_userdata('user', $user);
-                $this->SocialAccount->updateAccessToken($user->ID, 'LIN', $accesstoken);
+                if (!empty($profile) && ($profile != null)) {
+                    $this->SocialAccount->updateAccessToken($user->ID, 'LIN', $accesstoken);
+                }
                 $this->setMessage("Welcome", "You logged in with linked in!", "success");
                 redirect('app');
             } else {
-                $this->setMessage("Social Combo", "Uh oh.. Your linked in account is not registered.", "danger");
-                redirect('login');
+                $this->setMessage("Social Combo", "Register for a free account!", "info");
+                redirect('register?social=linkedin');
+
+//                $this->setMessage("Social Combo", "Uh oh.. Your linked in account is not registered.", "danger");
+//                redirect('login');
             }
         }
     }
@@ -159,6 +184,28 @@ class Social extends CI_Controller {
                 }
         }
         redirect($redir);
+    }
+
+    private function postCURL($url, $params) {
+
+        $postData = '';
+        //create name value pairs seperated by &
+        foreach ($params as $k => $v) {
+            $postData .= $k . '=' . $v . '&';
+        }
+        rtrim($postData, '&');
+
+
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+//        curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+        curl_setopt($ch, CURLOPT_HEADER, false);
+        curl_setopt($ch, CURLOPT_POST, count($postData));
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $postData);
+
+        curl_exec($ch);
+
+        curl_close($ch);
     }
 
     private function validateFB($accesstoken) {
