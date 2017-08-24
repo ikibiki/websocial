@@ -132,6 +132,7 @@ class Register extends CI_Controller {
     }
 
     protected function verifyRecaptcha() {
+        return true;
         if (ENVIRONMENT === 'development') {
             return true;
         }
