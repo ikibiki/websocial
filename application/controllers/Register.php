@@ -11,8 +11,6 @@ class Register extends CI_Controller {
     }
 
     public function index() {
-
-
         $mode = $this->input->get('social');
 
         switch ($mode) {
@@ -30,8 +28,6 @@ class Register extends CI_Controller {
                     }
                 }break;
             case 'twitter': {
-
-
                     $accesstoken = $this->session->userdata('oauth_token');
                     $accesstokensecret = $this->session->userdata('oauth_token_secret');
 
@@ -89,12 +85,13 @@ class Register extends CI_Controller {
                 'Password' => $password,
             ));
             if (empty($redir)) {
-                $redir = 'login';
+                $redir = 'app/connect';
             }
             if ($socialcode) {
                 $this->bind($socialcode, $userid);
             }
-            $this->setMessage('Register', 'Account successfully registered! Login to continue.');
+            $this->session->set_userdata('user',$this->UserAccount->getUserInfo($userid));
+            $this->setMessage('Register', 'Account successfully registered! Welcome to Social Combo!');
             redirect($redir);
         }
     }

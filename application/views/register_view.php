@@ -55,8 +55,6 @@ $redir = '';
                     </div>
                     <?php
                 }
-                ?>
-                <?php
                 echo form_open('register/process', array('id' => 'frmregister'));
 
                 if (isset($profile)) {

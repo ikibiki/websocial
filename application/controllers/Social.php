@@ -47,7 +47,7 @@ class Social extends CI_Controller {
                     redirect('app');
                 } else {
 
-                    $this->setMessage("Social Combo", "Register for a free account!", "info");
+                    $this->setMessage("Social Combo", "Last step. Create a password for your account so you can access it with a password.", "info");
                     redirect('register?social=facebook');
 //                    
 //                    $this->setMessage("Social Combo", "Oops... Your facebook account is not registered.", "danger");
@@ -93,7 +93,7 @@ class Social extends CI_Controller {
                 redirect('app');
             } else {
 
-                $this->setMessage("Social Combo", "Register for a free account!", "info");
+                $this->setMessage("Social Combo", "Last step. Create a password for your account so you can access it with a password.", "info");
                 redirect('register?social=twitter');
 //                $this->setMessage("Social Combo", "Oh.. Your twitter account is not registered.", "danger");
 //                redirect('login');
@@ -126,7 +126,7 @@ class Social extends CI_Controller {
                 $this->setMessage("Welcome", "You logged in with linked in!", "success");
                 redirect('app');
             } else {
-                $this->setMessage("Social Combo", "Register for a free account!", "info");
+                $this->setMessage("Social Combo", "Last step. Create a password for your account so you can access it with a password.", "info");
                 redirect('register?social=linkedin');
 
 //                $this->setMessage("Social Combo", "Uh oh.. Your linked in account is not registered.", "danger");
