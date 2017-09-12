@@ -40,6 +40,15 @@ class SocialAccount extends CI_Model {
         return $this->dbi->get()->result()[0];
     }
 
+    public function getSocialAccountsByUser($userid){
+        $this->dbi->reset_query();
+
+        $this->dbi->from('tblsocialaccount');
+        $this->dbi->where('User_Ref', $userid);
+        return $this->dbi->get()->result();
+
+    }
+
     public function getSocialAccountByUser($socialcode, $userid) {
         $this->dbi->reset_query();
 

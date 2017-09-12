@@ -13,6 +13,7 @@ function echoStyles() {
         "//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css",
         "//cdnjs.cloudflare.com/ajax/libs/bootstrap-social/5.1.1/bootstrap-social.min.css",
         "//cdnjs.cloudflare.com/ajax/libs/pretty-checkbox/2.2.1/pretty.min.css",
+        "//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.3/css/bootstrap-select.min.css",
     );
     foreach ($css as $elem) {
         echo "<link rel='stylesheet' href='$elem'/>";
@@ -27,6 +28,7 @@ function echoScripts() {
         "//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js",
         "//cdnjs.cloudflare.com/ajax/libs/Ripple.js/1.2.1/ripple.min.js",
         "//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js",
+        "//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.3/js/bootstrap-select.min.js",
     );
 
     foreach ($js as $elem) {

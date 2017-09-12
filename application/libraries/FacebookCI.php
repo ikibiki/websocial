@@ -3,16 +3,18 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 require_once APPPATH . 'third_party/Facebook/autoload.php';
 
-class FacebookCI {
+class FacebookCI
+{
 
     protected $CI;
 
-    public function __construct() {
-        $this->CI = & get_instance();
+    public function __construct()
+    {
+        $this->CI = &get_instance();
     }
 
-    public function getLoginLink() {
-
+    public function getLoginLink()
+    {
         $callbackurl = '';
         if (ENVIRONMENT === 'development') {
             $callbackurl = 'http://localhost/websocial/social/facebook';
@@ -33,7 +35,30 @@ class FacebookCI {
         return htmlspecialchars($loginUrl);
     }
 
-    public function getFacebookProfile($accesstoken) {
+    public function getReAuthLink()
+    {
+        $callbackurl = '';
+        if (ENVIRONMENT === 'development') {
+            $callbackurl = 'http://localhost/websocial/social/facebook';
+        } else {
+            $callbackurl = 'http://websocial.theshiftleft.com/social/facebook';
+        }
+
+        $fb = new \Facebook\Facebook([
+            'app_id' => FACEBOOK_APP,
+            'app_secret' => FACEBOOK_SECRET,
+            'default_graph_version' => 'v2.9',
+        ]);
+
+        $helper = $fb->getRedirectLoginHelper();
+        $permissions = ['email', 'user_posts', 'user_status', 'publish_actions'];
+
+        $loginUrl = $helper->getReRequestUrl($callbackurl, $permissions);
+        return htmlspecialchars($loginUrl);
+    }
+
+    public function getFacebookProfile($accesstoken, $id = 'NONE')
+    {
         $fb = new \Facebook\Facebook([
             'app_id' => FACEBOOK_APP,
             'app_secret' => FACEBOOK_SECRET,
@@ -42,7 +67,8 @@ class FacebookCI {
 
         try {
             //first_name,last_name,email,id,gender,name,cover,picture,about,birthday
-            $response = $fb->get('/me?fields=first_name,last_name,email,id,gender,name,cover,picture', $accesstoken);
+
+            $response = $fb->get('/' . ($id === 'NONE' ? 'me' : $id) . '?fields=first_name,last_name,email,id,gender,name,cover,picture', $accesstoken);
         } catch (\Facebook\Exceptions\FacebookResponseException $e) {
             // When Graph returns an error
             echo 'Graph returned an error: ' . $e->getMessage();
@@ -57,7 +83,8 @@ class FacebookCI {
         return $me->all();
     }
 
-    public function getFBCallback() {
+    public function getFBCallback()
+    {
 
         $fb = new \Facebook\Facebook([
             'app_id' => FACEBOOK_APP,
@@ -105,10 +132,11 @@ class FacebookCI {
         }
 
 
-        $_SESSION['fb_access_token'] = (string) $accessToken;
+        $_SESSION['fb_access_token'] = (string)$accessToken;
     }
 
-    public function createPost($msg, $accesstoken) {
+    public function createPost($msg, $id, $accesstoken)
+    {
         $fb = new \Facebook\Facebook([
             'app_id' => FACEBOOK_APP,
             'app_secret' => FACEBOOK_SECRET,
@@ -119,7 +147,7 @@ class FacebookCI {
         ];
 
         try {
-            $response = $fb->post('/me/feed', $linkData, $accesstoken);
+            $response = $fb->post('/' . $id . '/feed', $linkData, $accesstoken);
         } catch (Facebook\Exceptions\FacebookResponseException $e) {
             echo 'Graph returned an error: ' . $e->getMessage();
             exit;
@@ -133,28 +161,78 @@ class FacebookCI {
         return $graphNode;
     }
 
-    public function revokeFB() {
+    public function createImagePost($msg, $photofile, $fbid, $accesstoken)
+    {
         $fb = new \Facebook\Facebook([
             'app_id' => FACEBOOK_APP,
             'app_secret' => FACEBOOK_SECRET,
             'default_graph_version' => 'v2.9',
         ]);
-        $fb->setDefaultAccessToken($_SESSION['fb_access_token']);
+        $linkData = [
+            'message' => $msg,
+            'source' => $fb->fileToUpload($photofile),
+        ];
+
+        try {
+            $response = $fb->post('/' . $fbid . '/photos', $linkData, $accesstoken);
+        } catch (Facebook\Exceptions\FacebookResponseException $e) {
+            echo 'Graph returned an error: ' . $e->getMessage();
+            exit;
+        } catch (Facebook\Exceptions\FacebookSDKException $e) {
+            echo 'Facebook SDK returned an error: ' . $e->getMessage();
+            exit;
+        }
+
+        $graphNode = $response->getGraphNode();
+
+        return $graphNode;
+    }
+
+    public function getLogoutLink($accesstoken = null)
+    {
+        $callbackurl = '';
+        if (ENVIRONMENT === 'development') {
+            $callbackurl = 'http://localhost/websocial/social/facebook';
+        } else {
+            $callbackurl = 'http://websocial.theshiftleft.com/social/facebook';
+        }
+        $fb = new \Facebook\Facebook([
+            'app_id' => FACEBOOK_APP,
+            'app_secret' => FACEBOOK_SECRET,
+            'default_graph_version' => 'v2.9',
+        ]);
+        $helper = $fb->getRedirectLoginHelper();
+        $permissions = ['email', 'user_posts', 'user_status', 'publish_actions'];
+
+        $logouturl = $helper->getLogoutUrl($accesstoken, $callbackurl);
+        return htmlspecialchars($logouturl);
+    }
+
+    public function revokeFB($accesstoken = null)
+    {
+        $fb = new \Facebook\Facebook([
+            'app_id' => FACEBOOK_APP,
+            'app_secret' => FACEBOOK_SECRET,
+            'default_graph_version' => 'v2.9',
+        ]);
+        $fb->setDefaultAccessToken($accesstoken == null ? $_SESSION['fb_access_token'] : $accesstoken);
         $fb->delete('me/permissions');
     }
 
-    public function getDebugToken($accesstoken) {
+    public function getDebugToken($accesstoken)
+    {
         $fb = new \Facebook\Facebook([
             'app_id' => FACEBOOK_APP,
             'app_secret' => FACEBOOK_SECRET,
             'default_graph_version' => 'v2.9',
         ]);
         $oAuth2Client = $fb->getOAuth2Client();
-        $tokenMetadata = $oAuth2Client->debugToken($accessToken);
+        $tokenMetadata = $oAuth2Client->debugToken($accesstoken);
         return $tokenMetadata;
     }
 
-    protected function setMessage($title, $text, $type) {
+    protected function setMessage($title, $text, $type)
+    {
         $this->CI->session->set_flashdata('msg', array('title' => $title, 'text' => $text, 'type' => $type));
     }
 

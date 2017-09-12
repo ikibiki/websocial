@@ -3,15 +3,18 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 require_once APPPATH . 'third_party/codebird/codebird.php';
 
-class TwitterCI {
+class TwitterCI
+{
 
     protected $CI;
 
-    public function __construct() {
-        $this->CI = & get_instance();
+    public function __construct()
+    {
+        $this->CI = &get_instance();
     }
 
-    public function loginTwitter() {
+    public function loginTwitter()
+    {
 
         $callbackurl = '';
         if (ENVIRONMENT === 'development') {
@@ -36,7 +39,8 @@ class TwitterCI {
         exit;
     }
 
-    public function getTwCallback() {
+    public function getTwCallback()
+    {
         \Codebird\Codebird::setConsumerKey(TWITTER_APP, TWITTER_SECRET);
         $cb = \Codebird\Codebird::getInstance();
 
@@ -51,7 +55,8 @@ class TwitterCI {
         $_SESSION['oauth_token_secret'] = $reply->oauth_token_secret;
     }
 
-    public function getTwitterProfile($accesstoken, $accesstokensecret) {
+    public function getTwitterProfile($accesstoken, $accesstokensecret)
+    {
         \Codebird\Codebird::setConsumerKey(TWITTER_APP, TWITTER_SECRET);
         $cb = \Codebird\Codebird::getInstance();
         $cb->setToken($accesstoken, $accesstokensecret);
@@ -59,7 +64,8 @@ class TwitterCI {
         return $reply;
     }
 
-    public function tweet($msg, $accesstoken, $accesstokensecret) {
+    public function tweet($msg, $accesstoken, $accesstokensecret)
+    {
         \Codebird\Codebird::setConsumerKey(TWITTER_APP, TWITTER_SECRET);
         $cb = \Codebird\Codebird::getInstance();
         $cb->setToken($accesstoken, $accesstokensecret);
@@ -67,14 +73,31 @@ class TwitterCI {
         return $reply;
     }
 
-    public function twitterLogout($accesstoken, $accesstokensecret) {
+    public function tweetPhoto($msg, $photofile, $accesstoken, $accesstokensecret)
+    {
+        \Codebird\Codebird::setConsumerKey(TWITTER_APP, TWITTER_SECRET);
+        $cb = \Codebird\Codebird::getInstance();
+        $cb->setToken($accesstoken, $accesstokensecret);
+        $replymedia = $cb->media_upload([
+            'media' => $photofile
+        ]);
+        $reply = $cb->statuses_update([
+            'status' => urlencode($msg),
+            'media_ids' => $replymedia->media_id_string
+        ]);
+        return $reply;
+    }
+
+    public function twitterLogout($accesstoken, $accesstokensecret)
+    {
         \Codebird\Codebird::setConsumerKey(TWITTER_APP, TWITTER_SECRET);
         $cb = \Codebird\Codebird::getInstance();
 
         $cb->logout();
     }
 
-    protected function setMessage($title, $text, $type) {
+    protected function setMessage($title, $text, $type)
+    {
         $this->CI->session->set_flashdata('msg', array('title' => $title, 'text' => $text, 'type' => $type));
     }
 

@@ -17,7 +17,12 @@ class Social extends CI_Controller {
     public function facebook($revoke = 1) {
 
         if (!boolval($revoke)) {
-            $this->facebookci->revokeFB();
+            if ($this->isSessionActive()) {
+                $user = $this->session->userdata('user');
+               $social= $this->SocialAccount->getSocialAccountByUser('FB', $user->ID);
+                $this->facebookci->revokeFB();
+                $this->setMessage("Connect", "Facebook disconnected!", "success");
+            }
             redirect('app');
         } else {
             $this->facebookci->getFBCallback();
@@ -34,6 +39,7 @@ class Social extends CI_Controller {
                 redirect('app/connect');
             } else {
 
+
                 if ($this->validateFB($accesstoken)) {
                     $profile = $this->facebookci->getFacebookProfile($accesstoken);
                     $social = $this->SocialAccount->getSocialAccountBySAID('FB', $profile['id']);
@@ -49,9 +55,6 @@ class Social extends CI_Controller {
 
                     $this->setMessage("Social Combo", "Last step. Create a password for your account so you can access it with a password.", "info");
                     redirect('register?social=facebook');
-//                    
-//                    $this->setMessage("Social Combo", "Oops... Your facebook account is not registered.", "danger");
-//                    redirect('login');
                 }
             }
         }
@@ -95,8 +98,6 @@ class Social extends CI_Controller {
 
                 $this->setMessage("Social Combo", "Last step. Create a password for your account so you can access it with a password.", "info");
                 redirect('register?social=twitter');
-//                $this->setMessage("Social Combo", "Oh.. Your twitter account is not registered.", "danger");
-//                redirect('login');
             }
         }
     }
@@ -128,9 +129,6 @@ class Social extends CI_Controller {
             } else {
                 $this->setMessage("Social Combo", "Last step. Create a password for your account so you can access it with a password.", "info");
                 redirect('register?social=linkedin');
-
-//                $this->setMessage("Social Combo", "Uh oh.. Your linked in account is not registered.", "danger");
-//                redirect('login');
             }
         }
     }

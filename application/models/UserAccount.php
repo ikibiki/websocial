@@ -42,14 +42,13 @@ class UserAccount extends CI_Model {
         }
         return $this->dbi->get()->result()[0];
     }
-    
-    public function getUserInfoByEmail($email, $showinactive = false){
-         $this->dbi->reset_query();
+
+    public function getUserInfoByEmail($email, $showinactive = false) {
+        $this->dbi->reset_query();
 
         $this->dbi->from('tblusers');
-        if ($id > 0) {
-            $this->dbi->where('Email', $email);
-        }
+        $this->dbi->where('Email', $email);
+
         if (!$showinactive) {
             $this->dbi->where('IsActive', 1);
         }
